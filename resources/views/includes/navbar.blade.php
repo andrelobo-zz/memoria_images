@@ -29,12 +29,46 @@ if( Auth::check() ) {
 
         	<ul class="nav navbar-nav navbar-right margin-bottom-zero">
 
-						        		      		
+        		@if(!Request::is('/'))
 
-        		
+               <li id="li-search">
+        			<a class="color-default font-default text-uppercase" id="btnExpand" data-toggle="collapse" href="#formShow" aria-expanded="false" aria-controls="form_Show">
+        				<i class="icon-search"></i> <span class="title-dropdown">{{trans('misc.search')}}</span>
+        				</a>
+        		</li>
+        		 @endif
+
+        		@if( Auth::check() )
+        		 <li>
+        			<a href="{{url('feed')}}" class="font-default text-uppercase">
+        				{{trans('misc.feed')}}
+        				</a>
+        		</li>
+        		@endif
+
         		<li class="dropdown">
-        			<a href="Categorias" class="font-default text-uppercase" data-toggle="dropdown">{{trans('Categorias
-						')}}
+        			<a href="javascript:void(0);" class="font-default text-uppercase"  data-toggle="dropdown">{{trans('misc.explore')}}
+        				<i class="ion-chevron-down margin-lft5"></i>
+        				</a>
+
+        				<!-- DROPDOWN MENU -->
+        				<ul class="dropdown-menu arrow-up" role="menu" aria-labelledby="dropdownMenu2">
+        					<li><a href="{{ url('members') }}"><i class="icon icon-Users myicon-right"></i> {{ trans('misc.members') }}</a></li>
+        					<li><a href="{{ url('collections') }}"><i class="fa fa-folder-open-o myicon-right"></i> {{ trans('misc.collections') }}</a></li>
+        					<li><a href="{{ url('tags') }}"><i class="icon icon-Tag myicon-right"></i> {{ trans('misc.tags') }}</a></li>
+        					<li role="separator" class="divider"></li>
+        					<li><a href="{{ url('featured') }}">{{ trans('misc.featured') }}</a></li>
+	        				<li><a href="{{ url('popular') }}">{{ trans('misc.popular') }}</a></li>
+							<li><a href="{{ url('latest') }}">{{ trans('misc.latest') }}</a></li>
+			            	<li><a href="{{ url('most/commented') }}">{{trans('misc.most_commented')}}</a></li>
+				          	<li><a href="{{ url('most/viewed') }}">{{trans('misc.most_viewed')}}</a></li>
+				          	<li><a href="{{ url('most/downloads') }}">{{trans('misc.most_downloads')}}</a></li>
+        				</ul><!-- DROPDOWN MENU -->
+
+        			</li>
+
+        		<li class="dropdown">
+        			<a href="javascript:void(0);" class="font-default text-uppercase" data-toggle="dropdown">{{trans('misc.categories')}}
         				<i class="ion-chevron-down margin-lft5"></i>
         				</a>
 
@@ -50,7 +84,7 @@ if( Auth::check() ) {
 
         					@if( App\Models\Categories::count() > 9 )
 			        		<li><a href="{{ url('categories') }}">
-			        			<strong>Todas  <i class="fa fa-long-arrow-right"></i></strong>
+			        			<strong>{{ trans('misc.view_all') }} <i class="fa fa-long-arrow-right"></i></strong>
 			        		</a></li>
 			        		@endif
         				</ul><!-- DROPDOWN MENU -->

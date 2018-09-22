@@ -96,7 +96,7 @@ class ImagesController extends Controller {
 		$path_small          = 'public/uploads/small/';
 		$path_medium      = 'public/uploads/medium/';
 		$path_large           = 'public/uploads/large/';
-		// $watermarkSource = 'public/img/watermark.png';
+		$watermarkSource = 'public/img/watermark.png';
 
 		 $input = $request->all();
 
@@ -182,7 +182,7 @@ class ImagesController extends Controller {
 				->save($temp.$preview)
 				->destroy();*/
 
-				// Helper::watermark( $temp.$preview, $watermarkSource );
+				Helper::watermark( $temp.$preview, $watermarkSource );
 
 			}// End File
 
